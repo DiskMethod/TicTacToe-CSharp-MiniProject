@@ -1,1 +1,3 @@
-# Net6App
+# TicTacToe in C# (Console App)
+
+Mini practice project
