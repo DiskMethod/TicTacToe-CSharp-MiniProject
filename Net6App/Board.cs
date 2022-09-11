@@ -67,22 +67,20 @@ namespace Net6App
             return false;
         }
 
-        private int[]? MoveToCoordinate(int move)
+        private int[]? MoveToCoordinate(int move) => move switch
         {
-            return move switch
-            {
-                1 => new int[] { 0, 0 },
-                2 => new int[] { 0, 1 },
-                3 => new int[] { 0, 2 },
-                4 => new int[] { 1, 0 },
-                5 => new int[] { 1, 1 },
-                6 => new int[] { 1, 2 },
-                7 => new int[] { 2, 0 },
-                8 => new int[] { 2, 1 },
-                9 => new int[] { 2, 2 },
-                _ => null,
-            };
-        }
+            1 => new int[] { 0, 0 },
+            2 => new int[] { 0, 1 },
+            3 => new int[] { 0, 2 },
+            4 => new int[] { 1, 0 },
+            5 => new int[] { 1, 1 },
+            6 => new int[] { 1, 2 },
+            7 => new int[] { 2, 0 },
+            8 => new int[] { 2, 1 },
+            9 => new int[] { 2, 2 },
+            _ => null,
+        };
+        
 
         private bool CheckAndMove(int move)
         {
