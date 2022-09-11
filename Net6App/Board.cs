@@ -22,15 +22,13 @@ namespace Net6App
 
         private bool Check()
         {
-            int parseTemp;
-
             // Check horizontal
             for (int row = 0; row < board.GetLength(0); row++)
             {
                 string curr = board[row, 0];
                 for (int col = 0; col < board.GetLength(1); col++)
                 {
-                    if (int.TryParse(board[row, col], out parseTemp)) break;
+                    if (int.TryParse(board[row, col], out _)) break;
                     if (!curr.Equals(board[row, col])) break;
                     if (col == board.GetLength(1) - 1) return true;
                 }
@@ -42,7 +40,7 @@ namespace Net6App
                 string curr = board[0, col];
                 for (int row = 0; row < board.GetLength(0); row++)
                 {
-                    if (int.TryParse(board[row, col], out parseTemp)) break;
+                    if (int.TryParse(board[row, col], out _)) break;
                     if (!curr.Equals(board[row, col])) break;
                     if (row == board.GetLength(0) - 1) return true;
                 }
@@ -52,7 +50,7 @@ namespace Net6App
             string topLeftCurr = board[0, 0];
             for (int row = 0, col = 0; row < board.GetLength(0) && col < board.GetLength(1); row++, col++)
             {
-                if (int.TryParse(board[row, col], out parseTemp)) break;
+                if (int.TryParse(board[row, col], out _)) break;
                 if (!topLeftCurr.Equals(board[row, col])) break;
                 if (row == board.GetLength(0) - 1 || col == board.GetLength(1) - 1) return true;
             }
@@ -61,7 +59,7 @@ namespace Net6App
             string topRightCurr = board[0, board.GetLength(1) - 1];
             for (int row = 0, col = board.GetLength(1) - 1; row < board.GetLength(0) && col >= 0; row++, col--)
             {
-                if (int.TryParse(board[row, col], out parseTemp)) break;
+                if (int.TryParse(board[row, col], out _)) break;
                 if (!topRightCurr.Equals(board[row, col])) break;
                 if (row == board.GetLength(0) - 1 || col == 0) return true;
             }
@@ -71,29 +69,19 @@ namespace Net6App
 
         private int[]? MoveToCoordinate(int move)
         {
-            switch (move)
+            return move switch
             {
-                case 1:
-                    return new int[] { 0, 0 };
-                case 2:
-                    return new int[] { 0, 1 };
-                case 3:
-                    return new int[] { 0, 2 };
-                case 4:
-                    return new int[] { 1, 0 };
-                case 5:
-                    return new int[] { 1, 1 };
-                case 6:
-                    return new int[] { 1, 2 };
-                case 7:
-                    return new int[] { 2, 0 };
-                case 8:
-                    return new int[] { 2, 1 };
-                case 9:
-                    return new int[] { 2, 2 };
-                default:
-                    return null;
-            }
+                1 => new int[] { 0, 0 },
+                2 => new int[] { 0, 1 },
+                3 => new int[] { 0, 2 },
+                4 => new int[] { 1, 0 },
+                5 => new int[] { 1, 1 },
+                6 => new int[] { 1, 2 },
+                7 => new int[] { 2, 0 },
+                8 => new int[] { 2, 1 },
+                9 => new int[] { 2, 2 },
+                _ => null,
+            };
         }
 
         private bool CheckAndMove(int move)
